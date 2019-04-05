@@ -29,9 +29,9 @@ $ catkin build
 Once installed:
 1) Remove the line 'source /opt/ros/kinetic/setup.bash' from your '.bashrc'
 2) Source bashrc again 'source ~/.bashrc' This is because otw you cannot use python scripts to train
-3) Train!
+3) Freeze pretrained model!
 ```sh
-
+$ ./cnn_freeze.py -p /shared/city_512 -l /tmp/frozen_model/city_512
 ```
  
 
