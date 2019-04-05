@@ -11,6 +11,12 @@
   $ nvidia-docker run -ti --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/home/developer/.Xauthority -v /home/$USER/datasets/bonnet_data:/shared --net=host --pid=host --ipc=host bonnet /bin/bash
 ```
 
+IF You do not want to lose your data after exiting the docker session use instead:
+```sh
+nvidia-docker run -ti --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/home/developer/.Xauthority -v /home/$USER/datasets/bonnet_data:/shared --net=host --pid=host --ipc=host bonnet /bin/bash
+nvidia-docker exec -it <container id> /bin/bash
+```
+
 _-v /home/$USER/datasets/bonnet_data:/share_ can be replaced to point to wherever you store the data and trained models, in order to include the data inside the container for inference/training.
 
 #### Deployment
