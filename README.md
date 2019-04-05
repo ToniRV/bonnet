@@ -1,60 +1,39 @@
 # Bonnet: An Open-Source Training and Deployment Framework for Semantic Segmentation in Robotics.
-
-[![Build Status](https://travis-ci.org/PRBonn/bonnet.svg?branch=master)](https://travis-ci.org/PRBonn/bonnet)
-
-By [Andres Milioto](http://www.ipb.uni-bonn.de/people/andres-milioto/) @ University of Bonn.
-
-![Image of cityscapes](https://image.ibb.co/i5tEQR/CITY.png)
-Cityscapes Urban Scene understanding.
-- [Standalone Video Predictor - 512x256px](https://youtu.be/RXK_eYO_i08)
-- [Standalone Video Predictor - 768x384px (inception model)](https://youtu.be/3qD-GR87usw)
-- [Standalone Video Predictor - 1024x512px](https://youtu.be/tfeFHCq6YJs)
-
-![Image of Persons](https://image.ibb.co/nJRa3c/github_bruno.png)
-Person Segmentation
-- [Uptown funk (inception model)](https://photos.app.goo.gl/Ls3MkCo2Cwhc6pVT2)
-- [Can't stop the feeling (inception model)](https://photos.app.goo.gl/Mi4N4zLrTyyDRqv48)
-
-
-![Image of cwc](https://image.ibb.co/fcKXC6/CWC.png)
-Crop vs. Weed Semantic Segmentation.
-- [ROS node prediction - Video](https://youtu.be/-XgxiC04hUI)
-
-
-## Description
-
-This code provides a framework to easily add architectures and datasets, in order to 
-train and deploy CNNs for a robot. It contains a full training pipeline in python
-using Tensorflow and OpenCV, and it also some C++ apps to deploy a frozen
-protobuf in ROS and standalone. The C++ library is made in a way which allows to
-add other backends (such as TensorRT and MvNCS), but only Tensorflow and TensorRT
-are implemented for now. For now, we will keep it this way because we are mostly
-interested in deployment for the Jetson and Drive platforms, but if you have a specific
-need, we accept pull requests!
-
-The networks included is based of of many other architectures
-(see below), but not exactly a copy of any of them. As seen in the videos, they run very fast in
-both GPU and CPU, and they are designed with performance in mind, at the cost of
-a slight accuracy loss. Feel free to use it as a model to implement your own
-architecture.
-
-All scripts have been tested on the following configurations:
-- x86 Ubuntu 16.04 with an NVIDIA GeForce 940MX GPU (nvidia-384, CUDA9, CUDNN7, TF 1.7, TensorRT3)
-- x86 Ubuntu 16.04 with an NVIDIA GTX1080Ti GPU (nvidia-375, CUDA9, CUDNN7, TF 1.7, TensorRT3)
-- x86 Ubuntu 16.04 and 14.04 with no GPU (TF 1.7, running on CPU in NHWC mode, no TensorRT support)
-- Jetson TX2 (full Jetpack 3.2)
-
-We also provide a Dockerfile to make it easy to run without worrying about the dependencies, which is based on the official nvidia/cuda image containing cuda9 and cudnn7. In order to build and run this image with support for X11 (to display the results), you can run this in the repo root directory ([nvidia-docker](https://github.com/NVIDIA/nvidia-docker) should be used instead of vainilla docker):
+0.) Make dir bonnet_data in `/home/$USER/datasets/bonnet_data`
+1.) Download cityscape dataset to `bonnet_data` dir
+2.) Download pretrained model to `bonnet_data` dir
+3.) Install nvidia-docker
+4.) Pull bonnet docker image, and run:
 
 ```sh
   $ docker pull tano297/bonnet:cuda9-cudnn7-tf17-trt304
   $ nvidia-docker build -t bonnet .
-  $ nvidia-docker run -ti --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/home/developer/.Xauthority -v /home/$USER/data:/shared --net=host --pid=host --ipc=host bonnet /bin/bash
+  $ nvidia-docker run -ti --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/home/developer/.Xauthority -v /home/$USER/datasets/bonnet_data:/shared --net=host --pid=host --ipc=host bonnet /bin/bash
 ```
 
-_-v /home/$USER/data:/share_ can be replaced to point to wherever you store the data and trained models, in order to include the data inside the container for inference/training.
+_-v /home/$USER/datasets/bonnet_data:/share_ can be replaced to point to wherever you store the data and trained models, in order to include the data inside the container for inference/training.
 
 #### Deployment
+
+## INSTALL:
+
+Once inside docker, build bonnet's deploy_cpp
+```sh
+$ cd bonnet_wrkdir/deploy_cpp
+$ catkin init
+$ catkin build
+```
+
+## RUN:
+
+Once installed:
+1) Remove the line 'source /opt/ros/kinetic/setup.bash' from your '.bashrc'
+2) Source bashrc again 'source ~/.bashrc' This is because otw you cannot use python scripts to train
+3) Train!
+```sh
+
+```
+ 
 
 - _/deploy_cpp_ contains C++ code for deployment on robot of the full pipeline,
 which takes an image as input and produces the pixel-wise predictions
