@@ -1,3 +1,7 @@
+## INSTALL without docker
+
+1. https://www.tensorflow.org/install/gpu#install_cuda_with_apt
+
 # Bonnet: An Open-Source Training and Deployment Framework for Semantic Segmentation in Robotics.
 0.) Make dir bonnet_data in `/home/$USER/datasets/bonnet_data`
 
