@@ -36,7 +36,7 @@ When you’re ready to freeze your graph: run the following under `~/bonnet_wrkd
 2. Run cnn_use.py or cnn_use_pb_tensorRT.py (for speed up) to to analyze the image.
    1. `./cnn_use.py -l /test/log -p /test/<name of pretrained model> -i /test/<name of image>`
 
-   2. `./cnn_use_pb_tensorRT.py -l /test/log -p /test/frozen -i /test/<name of image>``
+   2. `./cnn_use_pb_tensorRT.py -l /test/log -p /test/frozen -i /test/<name of image>`
 
 
 !!!!!
