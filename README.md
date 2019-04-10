@@ -1,8 +1,12 @@
 # Bonnet: An Open-Source Training and Deployment Framework for Semantic Segmentation in Robotics.
 0.) Make dir bonnet_data in `/home/$USER/datasets/bonnet_data`
+
 1.) Download cityscape dataset to `bonnet_data` dir
+
 2.) Download pretrained model to `bonnet_data` dir
+
 3.) Install nvidia-docker
+
 4.) Pull bonnet docker image, and run:
 
 ```sh
