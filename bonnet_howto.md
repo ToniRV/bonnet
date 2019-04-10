@@ -31,23 +31,45 @@ At this point, docker container should be running.
 
 When you’re ready to freeze your graph: run the following under `~/bonnet_wrkdir/train_py`
 
-1. `./cnn_freeze.py -p /test/<name of pretrained model> -l /test/frozen`
+1. `python ./cnn_freeze.py -p /test/<name of pretrained model> -l /test/frozen`
 
 > For Example:
 > 
-> `./cnn_freeze.py -p ~/datasets/bonnet_data/city_512 -l /tmp/frozen_model/city_512`
+> `python ./cnn_freeze.py -p ~/datasets/bonnet_data/city_512 -l /tmp/frozen_model/city_512`
 
 2. Run cnn_use.py or cnn_use_pb_tensorRT.py (for speed up) to to analyze the image.
-   1. `./cnn_use.py -l /test/log -p /test/<name of pretrained model> -i /test/<name of image>`
+   1. `python ./cnn_use.py -l /test/log -p /test/<name of pretrained model> -i /test/<name of image>`
    
  > For example: 
  >  
- > `./cnn_use.py -l /tmp/log -p ~/datasets/bonnet_data/city_512/ -i ~/datasets/bonnet_data/leftImg8bit/train/zurich/zurich_000040_000019_leftImg8bit.png`
+ > `python ./cnn_use.py -l /tmp/log -p ~/datasets/bonnet_data/city_512/ -i ~/datasets/bonnet_data/leftImg8bit/train/zurich/zurich_000040_000019_leftImg8bit.png`
 
-   2. `./cnn_use_pb_tensorRT.py -l /test/log -p /test/frozen -i /test/<name of image>`
+   2. `python ./cnn_use_pb_tensorRT.py -l /test/log -p /test/frozen -i /test/<name of image>`
 
 
 !!!!!
 Results are in the `/test/log`
 
 Done
+
+FAQ:
+- If you encounter this issue:
+```
+Traceback (most recent call last):
+  File "./cnn_use.py", line 37, in <module>
+    import tensorflow as tf
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/__init__.py", line 24, in <module>
+    from tensorflow.python import *  # pylint: disable=redefined-builtin
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/__init__.py", line 63, in <module>
+    from tensorflow.python.framework.framework_lib import *  # pylint: disable=redefined-builtin
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/framework_lib.py", line 76, in <module>
+    from tensorflow.python.framework.ops import Graph
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/ops.py", line 53, in <module>
+    from tensorflow.python.platform import app
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/platform/app.py", line 24, in <module>
+    from tensorflow.python.platform import flags
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/platform/flags.py", line 25, in <module>
+    from absl.flags import *  # pylint: disable=wildcard-import
+ModuleNotFoundError: No module named 'absl'
+```
+Make sure you specify `python` in front of the command you are running!
