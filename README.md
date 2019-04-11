@@ -1,9 +1,14 @@
 ## INSTALL without docker
 
 -1. Setup virtual env using system packages and python 3
+
 0. pip install -r requirements.txt in train_py
+
 1. Install tensorflow-gpu support: https://www.tensorflow.org/install/gpu#install_cuda_with_apt
-Make sure you also follow the instructions to install TensorRT!
+DO NOT follow the instructions to install TensorRT!
+
+2. Install TensorRT from here to have python bindings:
+https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html#installing-debian
 
 # Bonnet: An Open-Source Training and Deployment Framework for Semantic Segmentation in Robotics.
 0.) Make dir bonnet_data in `/home/$USER/datasets/bonnet_data`
