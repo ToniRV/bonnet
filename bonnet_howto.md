@@ -36,6 +36,7 @@ When you’re ready to freeze your graph: run the following under `~/bonnet_wrkd
 > For Example:
 > 
 > `python ./cnn_freeze.py -p ~/datasets/bonnet_data/city_512 -l /tmp/frozen_model/city_512`
+> In docker: `./cnn_freeze.py -p /shared/city_512 -l /tmp/frozen_model/city_512`
 
 2. Run cnn_use.py or cnn_use_pb_tensorRT.py (for speed up) to to analyze the image.
    1. `python ./cnn_use.py -l /test/log -p /test/<name of pretrained model> -i /test/<name of image>`
