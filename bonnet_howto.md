@@ -73,3 +73,18 @@ Traceback (most recent call last):
 ModuleNotFoundError: No module named 'absl'
 ```
 Make sure you specify `python` in front of the command you are running!
+
+- If you encounter missing 'arch.abstract_net':
+```
+Copying files to /tmp/frozen_model/city_512 for further reference.
+Traceback (most recent call last):
+  File "./cnn_freeze.py", line 165, in <module>
+    "architecture", os.getcwd() + '/arch/' + NET["name"] + '.py')
+  File "/home/tonirv/Code/bonnet/train_py/arch/bonnet.py", line 28, in <module>
+    from arch.abstract_net import AbstractNetwork
+ImportError: No module named arch.abstract_net
+```
+
+Do
+`pip install arch`
+
