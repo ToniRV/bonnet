@@ -10,6 +10,10 @@ DO NOT follow the instructions to install TensorRT!
 2. Install TensorRT from here to have python bindings:
 https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html#installing-debian
 
+DO install as well `python3-libnvinfer-dev` and you'll have to copy the installed python packages
+from `cp -r /usr/lib/python3.6/dist-packages/* /home/tonirv/Code/bonnet/train_py/venv/lib/python3.6/site-packages`
+
+
 # Bonnet: An Open-Source Training and Deployment Framework for Semantic Segmentation in Robotics.
 0.) Make dir bonnet_data in `/home/$USER/datasets/bonnet_data`
 
