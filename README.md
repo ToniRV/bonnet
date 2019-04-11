@@ -1,6 +1,6 @@
 ## INSTALL without docker
 
--1. Setup virtual env using system packages and python 3
+-1. Setup virtual env using system packages and python 2.7!
 
 0. pip install -r requirements.txt in train_py
 
