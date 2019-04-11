@@ -3,10 +3,7 @@
 -1. Setup virtual env using system packages and python 3
 0. pip install -r requirements.txt in train_py
 1. Install tensorflow-gpu support: https://www.tensorflow.org/install/gpu#install_cuda_with_apt
-This installs TensorRT but the runtime one
-2. Install TensorRT
-  1. Needs to install PyCUDA on Linux: `sudo apt-get install nvidia-cuda-toolkit nvidia-cuda-dev python-pycuda`
-  2. Install TensorRT from: https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html#downloading
+Make sure you also follow the instructions to install TensorRT!
 
 # Bonnet: An Open-Source Training and Deployment Framework for Semantic Segmentation in Robotics.
 0.) Make dir bonnet_data in `/home/$USER/datasets/bonnet_data`
